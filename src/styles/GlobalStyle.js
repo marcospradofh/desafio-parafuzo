@@ -6,12 +6,16 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  body {
+    background: #F2F2F2;
   }
 
   #root {
     max-width: 960px;
     margin: 0 auto;
-    padding: 40px 20px;
   }
 
   button {
