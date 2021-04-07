@@ -20,10 +20,11 @@ export const Container = styled.div`
     background: #fff;
     margin: 0 10px;
     padding: 10px;
+    border-radius: 4px;
+
     p {
       max-width: 200px;
-      margin: 0 auto;
-      padding-top: 32px;
+      margin-top: 32px;
 
       font-weight: normal;
       font-size: 16px;
@@ -33,11 +34,22 @@ export const Container = styled.div`
     }
 
     span {
+      margin: 3px auto 24px;
       font-size: 38px;
       line-height: 52px;
       color: #00bcd4;
       display: block;
       text-align: center;
+    }
+
+    a {
+      margin-top: 24px;
+      margin-bottom: 18px;
+
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      color: #00bcd4;
     }
   }
 `;

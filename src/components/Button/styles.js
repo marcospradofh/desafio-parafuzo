@@ -36,5 +36,8 @@ export const StyledButton = styled.button`
   text-align: center;
   color: #9b9b9b;
 
-  ${(props) => buttonVariants[props.color] || null}
+  &:disabled {
+    cursor: not-allowed;
+  }
+  ${(props) => buttonVariants[props.color] || null};
 `;

@@ -9,7 +9,7 @@ function Modal() {
       <div>
         <p>Confirma o pagamento da placa abaixo?</p>
         <span>ABC-1234</span>
-        <Button>CONFIRMAR</Button>
+        <Button color="purple">CONFIRMAR</Button>
         <Link to="/">VOLTAR</Link>
       </div>
     </Container>

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Home, Car, Parking } from '../pages';
+import { Home, Parking, Historic } from '../pages';
 
 function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/car" component={Car} />
       <Route path="/parking" component={Parking} />
+      <Route path="/historic" component={Historic} />
     </Switch>
   );
 }
