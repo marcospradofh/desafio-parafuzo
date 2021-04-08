@@ -9,6 +9,8 @@ import StatusScreen from '../StatusScreen';
 function In() {
   const [plate, setPlate] = useState('');
   const [loading, setLoading] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [sucess, setSucess] = useState(null);
   const [error, setError] = useState('');
 
   function validate(value) {
@@ -32,6 +34,7 @@ function In() {
         }
       );
       console.log(res);
+      if (res.statusText === 'OK') setSucess(true);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -42,11 +45,9 @@ function In() {
   }
 
   return (
-    <>
-      {loading ? (
-        <StatusScreen message="Carregando..." />
-      ) : (
-        <Form isActive={!!plate} onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
+      {!loading && (
+        <div>
           <p>Número da placa:</p>
           <Input
             placeholder="AAA-0000"
@@ -64,9 +65,13 @@ function In() {
           <Button color={plate ? 'green' : undefined} plate={plate}>
             CONFIRMAR ENTRADA
           </Button>
-        </Form>
+        </div>
       )}
-    </>
+      {loading && (
+        <StatusScreen message="Registrando..." typeAnimation="loading" />
+      )}
+      {sucess && <StatusScreen message="REGISTRADO" typeAnimation="sucess" />}
+    </Form>
   );
 }
 

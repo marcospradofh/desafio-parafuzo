@@ -1,9 +1,10 @@
 import React from 'react';
+import Animation from '../../components/StatusScreen/animation';
 
 function Home() {
   return (
     <div>
-      <p>Home</p>
+      <Animation />
     </div>
   );
 }
