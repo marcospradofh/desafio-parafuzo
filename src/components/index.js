@@ -5,3 +5,4 @@ export { default as Nav } from './Nav';
 export { default as In } from './In';
 export { default as Out } from './Out';
 export { default as HistoricCard } from './HistoricCard';
+export { default as Error } from './Error';

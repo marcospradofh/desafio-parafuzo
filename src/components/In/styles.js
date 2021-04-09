@@ -10,16 +10,4 @@ export const Form = styled.form`
     color: #9b9b9b;
     margin-bottom: 8px;
   }
-
-  span {
-    display: flex;
-    margin-top: 8px;
-    padding: 7px 13px;
-    background: rgba(255, 23, 68, 0.15);
-    border-radius: 4px;
-
-    img {
-      margin-right: 8px;
-    }
-  }
 `;

@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
 import { api } from '../../services/api';
-import { Button, Input } from '..';
+import { Button, Error, Input } from '..';
 import { Form } from './styles';
-import errorLogo from '../../assets/error.svg';
 import StatusScreen from '../StatusScreen';
 
 function In() {
   const [plate, setPlate] = useState('');
-  const [loading, setLoading] = useState(null);
-  // eslint-disable-next-line no-unused-vars
-  const [sucess, setSucess] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [sucess, setSucess] = useState(false);
   const [error, setError] = useState('');
 
   function validate(value) {
@@ -19,13 +17,13 @@ function In() {
   }
 
   async function handleSubmit(event) {
+    setLoading(true);
     event.preventDefault();
     try {
       if (!validate(plate)) return setError('Formato inválido');
-      setLoading(true);
-      // eslint-disable-next-line no-unused-vars
-      const res = await axios.post(
-        `${api}/parking`,
+
+      const res = await api.post(
+        '/parking',
         { plate },
         {
           headers: {
@@ -33,20 +31,28 @@ function In() {
           },
         }
       );
-      console.log(res);
       if (res.statusText === 'OK') setSucess(true);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
-
     return true;
   }
 
+  useEffect(() => {
+    function returnToIntialState() {
+      setInterval(() => {
+        setSucess(false);
+        setPlate('');
+      }, 3000);
+    }
+    return () => returnToIntialState();
+  }, [sucess]);
+
   return (
     <Form onSubmit={handleSubmit}>
-      {!loading && (
+      {!loading && !sucess && (
         <div>
           <p>Número da placa:</p>
           <Input
@@ -55,22 +61,18 @@ function In() {
             plate={plate}
             setError={setError}
           />
-          {error && (
-            <span>
-              <img src={errorLogo} alt="erro" />
-              {error}
-              {loading}
-            </span>
-          )}
+          {error && <Error errorMessage={error} />}
           <Button color={plate ? 'green' : undefined} plate={plate}>
             CONFIRMAR ENTRADA
           </Button>
         </div>
       )}
-      {loading && (
+      {loading && !sucess && (
         <StatusScreen message="Registrando..." typeAnimation="loading" />
       )}
-      {sucess && <StatusScreen message="REGISTRADO" typeAnimation="sucess" />}
+      {!loading && sucess && (
+        <StatusScreen message="REGISTRADO" typeAnimation="sucess" />
+      )}
     </Form>
   );
 }

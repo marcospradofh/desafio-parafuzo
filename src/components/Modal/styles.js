@@ -12,7 +12,8 @@ export const Container = styled.div`
   left: 0;
   z-index: 1000;
 
-  div {
+  form {
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,6 +41,7 @@ export const Container = styled.div`
       color: #00bcd4;
       display: block;
       text-align: center;
+      text-transform: uppercase;
     }
 
     a {
@@ -50,6 +52,7 @@ export const Container = styled.div`
       font-weight: bold;
       font-size: 15px;
       color: #00bcd4;
+      cursor: pointer;
     }
   }
 `;
