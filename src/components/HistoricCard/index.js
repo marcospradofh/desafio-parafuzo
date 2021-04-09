@@ -1,21 +1,13 @@
 import React from 'react';
 import { Container } from './styles';
 
-function HistoricCard({ time, pay }) {
+function HistoricCard({ time, pay, onClick }) {
   return (
-    <Container>
-      <thead>
-        <tr>
-          <th>Tempo atual</th>
-          <th>Pagamento</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{time}</td>
-          <td>{pay}</td>
-        </tr>
-      </tbody>
+    <Container onClick={onClick}>
+      <div className="header">Tempo atual</div>
+      <div className="header">Pagamento</div>
+      <div className="body">{time}</div>
+      <div className="body">{pay}</div>
     </Container>
   );
 }

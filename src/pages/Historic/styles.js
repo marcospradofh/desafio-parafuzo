@@ -20,6 +20,10 @@ export const Container = styled.div`
       font-size: 24px;
       /* line-height: 33px; */
       color: #00bcd4;
+
+      span {
+        text-transform: uppercase;
+      }
     }
   }
 `;

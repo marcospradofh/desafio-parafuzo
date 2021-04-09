@@ -1,14 +1,16 @@
+/* eslint-disable func-names */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { Container } from './styles';
 import arrowLeft from '../../assets/shape.svg';
-import { HistoricCard } from '../../components';
+import { Details, HistoricCard } from '../../components';
 import { api } from '../../services/api';
 
 function Historic({ match }) {
   const { params } = match;
-  // eslint-disable-next-line no-unused-vars
   const [data, setData] = useState([]);
+  const [detailData, setDetailData] = useState([]);
+  const [showDetail, setShowDetail] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -33,19 +35,36 @@ function Historic({ match }) {
 
   return (
     <Container>
-      <header>
-        <img src={arrowLeft} alt="Seta para esquerda" />
-        <h3>Placa {params.plate}</h3>
-      </header>
-      <div>
-        {data.map((item, index) => (
-          <HistoricCard
-            key={index}
-            time={getTime(item.time)}
-            pay={item.paid ? 'Pago' : '-'}
-          />
-        ))}
-      </div>
+      {showDetail ? (
+        <Details
+          setShowDetail={setShowDetail}
+          detailData={detailData}
+          getTime={getTime}
+        />
+      ) : (
+        <>
+          <header>
+            <img src={arrowLeft} alt="Voltar" />
+            <h3>
+              Placa <span>{params.plate}</span>
+            </h3>
+          </header>
+
+          <div>
+            {data.map((item, index) => (
+              <HistoricCard
+                key={index}
+                time={getTime(item.time)}
+                pay={item.paid ? 'Pago' : '-'}
+                onClick={() => {
+                  setDetailData(item);
+                  setShowDetail(true);
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </Container>
   );
 }
