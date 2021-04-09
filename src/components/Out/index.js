@@ -16,12 +16,12 @@ function In() {
   }
 
   function handlePaySubmit() {
-    if (!validate(plate)) return setError('Formato inválido');
-    return setPayModal(true);
+    if (!validate(plate)) setError('Formato inválido');
+    setPayModal(true);
   }
   function handleOutSubmit() {
-    if (!validate(plate)) return setError('Formato inválido');
-    return setOutModal(true);
+    if (!validate(plate)) setError('Formato inválido');
+    setOutModal(true);
   }
 
   return (
@@ -33,6 +33,7 @@ function In() {
           message="Confirma o pagamento da placa abaixo?"
           butttonMessage="CONFIRMAR"
           operationType="pay"
+          setPlate={setPlate}
         />
       )}
       {outModal && (
@@ -42,6 +43,7 @@ function In() {
           message="Confirma a saída do veículo da placa abaixo?"
           butttonMessage="LIBERAR SAÍDA"
           operationType="out"
+          setPlate={setPlate}
         />
       )}
       <Form onSubmit={(e) => e.preventDefault()}>
@@ -67,7 +69,7 @@ function In() {
         >
           SAÍDA
         </Button>
-        <Link to="/">VER HISTÓRICO</Link>
+        <Link to={`/historic/${plate}`}>VER HISTÓRICO</Link>
       </Form>
     </>
   );

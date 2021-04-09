@@ -33,20 +33,20 @@ function In() {
       );
       if (res.statusText === 'OK') setSucess(true);
     } catch (err) {
-      setError(err.message);
+      setError('Carro já estacionado.');
     } finally {
       setLoading(false);
     }
     return true;
   }
+  function returnToIntialState() {
+    setTimeout(() => {
+      setSucess(false);
+      setPlate('');
+    }, 3000);
+  }
 
   useEffect(() => {
-    function returnToIntialState() {
-      setInterval(() => {
-        setSucess(false);
-        setPlate('');
-      }, 3000);
-    }
     return () => returnToIntialState();
   }, [sucess]);
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from './styles';
 
-function HistoricCard() {
+function HistoricCard({ time, pay }) {
   return (
     <Container>
       <thead>
@@ -12,8 +12,8 @@ function HistoricCard() {
       </thead>
       <tbody>
         <tr>
-          <td>1h20min</td>
-          <td>---</td>
+          <td>{time}</td>
+          <td>{pay}</td>
         </tr>
       </tbody>
     </Container>

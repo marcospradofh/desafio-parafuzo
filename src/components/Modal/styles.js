@@ -34,7 +34,7 @@ export const Container = styled.div`
       color: #4a4a4a;
     }
 
-    span {
+    .plate {
       margin: 3px auto 24px;
       font-size: 38px;
       line-height: 52px;
