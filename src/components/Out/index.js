@@ -4,7 +4,7 @@ import { Button, Error, Input } from '..';
 import Modal from '../Modal';
 import { Form } from './styles';
 
-function In() {
+function Out() {
   const [plate, setPlate] = useState('');
   const [error, setError] = useState('');
   const [payModal, setPayModal] = useState(false);
@@ -19,9 +19,18 @@ function In() {
     if (!validate(plate)) setError('Formato inválido');
     setPayModal(true);
   }
+
   function handleOutSubmit() {
     if (!validate(plate)) setError('Formato inválido');
     setOutModal(true);
+  }
+
+  function handleHidePayModal() {
+    setPayModal(false);
+  }
+  function handleHideOutModal() {
+    setOutModal(false);
+    setPlate('');
   }
 
   return (
@@ -29,23 +38,24 @@ function In() {
       {payModal && (
         <Modal
           plate={plate}
-          modal={payModal}
-          setModal={setPayModal}
+          open={payModal}
           message="Confirma o pagamento da placa abaixo?"
           butttonMessage="CONFIRMAR"
           operationType="pay"
           setPlate={setPlate}
+          handleCloseModal={handleHidePayModal}
         />
       )}
       {outModal && (
         <Modal
           plate={plate}
-          modal={outModal}
-          setModal={setOutModal}
+          open={outModal}
           message="Confirma a saída do veículo da placa abaixo?"
           butttonMessage="LIBERAR SAÍDA"
           operationType="out"
           setPlate={setPlate}
+          setModal={setOutModal}
+          handleCloseModal={handleHideOutModal}
         />
       )}
       <Form onSubmit={(e) => e.preventDefault()}>
@@ -77,4 +87,4 @@ function In() {
   );
 }
 
-export default In;
+export default Out;

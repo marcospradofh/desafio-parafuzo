@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Container } from './styles';
 import { Button, Error } from '..';
 import { api } from '../../services/api';
@@ -9,12 +9,10 @@ import StatusScreen from '../StatusScreen';
 
 function Modal({
   plate,
-  modal,
-  setModal,
   message,
   butttonMessage,
   operationType,
-  setPlate,
+  handleCloseModal,
 }) {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -32,23 +30,16 @@ function Modal({
       if (operationType === 'out') setError('Carro não estacionado.');
     } finally {
       setLoading(false);
+      setTimeout(() => {
+        setSucess(false);
+        handleCloseModal();
+      }, 3000);
     }
-    return true;
   }
-
-  function returnToIntialState() {
-    setTimeout(() => {
-      setSucess(false);
-      setModal(false);
-      if (operationType === 'out') setPlate('');
-    }, 3000);
-  }
-  useEffect(() => {
-    return () => returnToIntialState();
-  }, [sucess, modal, plate]);
 
   return (
     <Container>
+      (
       {!loading && !sucess && (
         <form onSubmit={handleSubmit}>
           <p>{message}</p>
@@ -57,10 +48,10 @@ function Modal({
           <Button color="purple" plate={plate}>
             {butttonMessage}
           </Button>
-          <a onClick={() => setModal(false)}>VOLTAR</a>
+          <a onClick={() => handleCloseModal()}>VOLTAR</a>
         </form>
       )}
-      {loading && !sucess && <StatusScreen typeAnimation="loading" />}
+      ){loading && !sucess && <StatusScreen typeAnimation="loading" />}
       {!loading && sucess && <StatusScreen typeAnimation="sucess" />}
     </Container>
   );
