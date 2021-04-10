@@ -7,3 +7,4 @@ export { default as Out } from './Out';
 export { default as HistoricCard } from './HistoricCard';
 export { default as Error } from './Error';
 export { default as Details } from './Details';
+export { default as Sidebar } from './Sidebar';

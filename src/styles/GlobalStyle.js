@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 
   #root {
     max-width: 960px;
-    margin: 0 auto;
+    margin: 80px auto;
   }
 
   button {

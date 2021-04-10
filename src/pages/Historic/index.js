@@ -1,6 +1,10 @@
 /* eslint-disable func-names */
 /* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import arrowLeft from '../../assets/shape.svg';
 import { Details, HistoricCard } from '../../components';
@@ -44,7 +48,9 @@ function Historic({ match }) {
       ) : (
         <>
           <header>
-            <img src={arrowLeft} alt="Voltar" />
+            <Link to="/parking/out">
+              <img src={arrowLeft} alt="Voltar" />
+            </Link>
             <h3>
               Placa <span>{params.plate}</span>
             </h3>
