@@ -45,7 +45,7 @@ function Modal({
   }
   useEffect(() => {
     return () => returnToIntialState();
-  }, [sucess, modal]);
+  }, [sucess, modal, plate]);
 
   return (
     <Container>
