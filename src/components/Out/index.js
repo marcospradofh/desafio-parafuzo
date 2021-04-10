@@ -29,6 +29,7 @@ function In() {
       {payModal && (
         <Modal
           plate={plate}
+          modal={payModal}
           setModal={setPayModal}
           message="Confirma o pagamento da placa abaixo?"
           butttonMessage="CONFIRMAR"
@@ -39,6 +40,7 @@ function In() {
       {outModal && (
         <Modal
           plate={plate}
+          modal={outModal}
           setModal={setOutModal}
           message="Confirma a saída do veículo da placa abaixo?"
           butttonMessage="LIBERAR SAÍDA"

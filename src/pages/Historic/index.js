@@ -21,7 +21,7 @@ function Historic({ match }) {
       const res = await api.get(`/parking/${params.plate}`);
       setData(res.data);
     })();
-  }, []);
+  }, [params.plate]);
 
   function getTime(time) {
     let timeParsed = '';

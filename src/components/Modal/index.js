@@ -9,6 +9,7 @@ import StatusScreen from '../StatusScreen';
 
 function Modal({
   plate,
+  modal,
   setModal,
   message,
   butttonMessage,
@@ -44,7 +45,7 @@ function Modal({
   }
   useEffect(() => {
     return () => returnToIntialState();
-  }, [sucess]);
+  }, [sucess, modal]);
 
   return (
     <Container>
